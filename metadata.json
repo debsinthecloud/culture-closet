@@ -1,0 +1,8 @@
+{
+  "name": "culturecloset.ng",
+  "description": "A high-end clothing e-commerce platform featuring an AI-powered personal stylist assistant, responsive product galleries, and a seamless shopping experience.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
