@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
+import { supabase } from './supabaseClient';
+import Header from './components/Header';import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import CartDrawer from './components/CartDrawer';
 import StylistAssistant from './components/StylistAssistant';
@@ -35,6 +35,28 @@ const App: React.FC = () => {
   // User Authentication State
   const [user, setUser] = useState<User | null>(userService.getCurrentUser());
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+// This is your new "shelf" for live dresses from the database
+  const [dbProducts, setDbProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    async function getDresses() {
+      const { data } = await supabase.from('products').select('*');
+      
+      if (data) {
+        // This converts the database items into the format your website understands
+        const formatted = data.map(item => ({
+          id: item.id.toString(),
+          name: item.name,
+          price: Number(item.price),
+          description: item.description,
+          image: Array.isArray(item.image_url) ? item.image_url[0] : item.image_url,
+          category: item.category || 'New Arrival'
+        }));
+        setDbProducts(formatted);
+      }
+    }
+    getDresses();
+  }, []);
 
   useEffect(() => {
     const handleHash = () => {
@@ -98,8 +120,8 @@ const App: React.FC = () => {
   };
 
   const filteredProducts = activeCategory === 'All' 
-    ? PRODUCTS 
-    : PRODUCTS.filter(p => p.category === activeCategory);
+    ? dbProducts  // Change this from PRODUCTS
+    : dbProducts.filter(p => p.category === activeCategory); // Change this from PRODUCTS
 
   const renderHome = () => (
     <div className="space-y-20 pb-20">
@@ -142,7 +164,7 @@ const App: React.FC = () => {
           </button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {PRODUCTS.slice(0, 3).map(product => (
+          {dbProducts.slice(0, 3).map(product => (
             <ProductCard 
               key={product.id} 
               product={product} 

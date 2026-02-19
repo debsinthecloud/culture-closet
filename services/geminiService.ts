@@ -1,5 +1,4 @@
-
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PRODUCTS } from "../constants";
 
 export interface StylistResponse {
@@ -9,64 +8,39 @@ export interface StylistResponse {
 }
 
 export async function getStylingAdvice(userPrompt: string): Promise<StylistResponse> {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  // 1. Setup the connection using your secret key from the .env vault
+  const AI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+  
+  // 2. Use the "1.5-flash" model - it is the most stable and fastest for Lagos internet
+  const model = genAI.getGenerativeModel({ 
+    model: "gemini-1.5-flash"
+  });
+
   const productContext = PRODUCTS.map(p => 
     `${p.name} ($${p.price}) in category ${p.category}: ${p.description}`
   ).join('\n');
 
   try {
-    // 1. Get Text & Search Grounding
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: `You are an expert personal stylist for Culture Closet, a high-end cultural fashion brand.
+    const prompt = `You are an expert personal stylist for Culture Closet, a high-end cultural fashion brand.
       Our current inventory:
       ${productContext}
       
       User request: "${userPrompt}"
       
       Task: 
-      1. Use Google Search to find current cultural fashion trends related to their request.
-      2. Suggest specific items from our inventory.
-      3. If they ask to "see" or "visualize" an outfit, or if a visual would help, let them know you are generating a concept.
-      
-      Keep it high-end and helpful.`,
-      config: {
-        tools: [{ googleSearch: {} }],
-      }
-    });
+      1. Suggest specific items from our inventory.
+      2. Keep it high-end, luxury, and helpful.`;
 
-    const text = response.text || "I'm inspired by your request! Let me help you find the perfect look.";
-    const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
-    const sources = chunks
-      .filter(c => c.web)
-      .map(c => ({ title: c.web!.title, uri: c.web!.uri }));
+    // 3. Ask the AI for the response
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
 
-    // 2. Conditionally Generate Image
-    let generatedImage: string | undefined;
-    if (userPrompt.toLowerCase().includes('see') || 
-        userPrompt.toLowerCase().includes('visualize') || 
-        userPrompt.toLowerCase().includes('show') ||
-        text.toLowerCase().includes('generating')) {
-      
-      const imgResponse = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-image',
-        contents: `A high-fashion editorial photo of a model wearing a ${userPrompt} in the style of Culture Closet. High-end lighting, cultural luxury aesthetic, 8k resolution.`,
-        config: {
-          imageConfig: { aspectRatio: "1:1" }
-        }
-      });
-
-      for (const part of imgResponse.candidates[0].content.parts) {
-        if (part.inlineData) {
-          generatedImage = `data:image/png;base64,${part.inlineData.data}`;
-          break;
-        }
-      }
-    }
-
-    return { text, image: generatedImage, sources };
+    return { text };
   } catch (error) {
     console.error("Gemini Error:", error);
-    return { text: "I'm having a moment to reflect on my style database. Please try again in a second!" };
+    return { 
+      text: "I'm having a moment to reflect on my style database. Please try again in a second!" 
+    };
   }
 }
