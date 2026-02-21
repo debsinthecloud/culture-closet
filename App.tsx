@@ -491,7 +491,7 @@ const App: React.FC = () => {
         onSuccess={(u) => { setUser(u); setIsAuthModalOpen(false); }} 
       />
 
-      <StylistAssistant />
+      <StylistAssistant products={dbproducts} />
     </div>
   );
 };
