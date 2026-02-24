@@ -202,7 +202,11 @@ const App: React.FC = () => {
           </div>
           <div className="relative">
             <div className="aspect-w-4 aspect-h-5 rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
-              <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&q=80&w=800" alt="Artisan detail" className="w-full h-full object-cover" />
+              <img 
+  src="/2.jpeg" 
+  alt="Culture Closet Heritage" 
+  className="w-full h-full object-cover" 
+/>
             </div>
           </div>
         </div>
