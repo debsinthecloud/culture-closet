@@ -204,7 +204,7 @@ const App: React.FC = () => {
             <div className="aspect-w-4 aspect-h-5 rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
               <img 
   src="/2.jpeg" 
-  alt="Culture Closet Heritage" 
+  alt="Culture Closet Adire Fashion" 
   className="w-full h-full object-cover" 
 />
             </div>
