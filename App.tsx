@@ -202,11 +202,7 @@ const App: React.FC = () => {
           </div>
           <div className="relative">
             <div className="aspect-w-4 aspect-h-5 rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
-              <img 
-  src="/2.jpeg" 
-  alt="Culture Closet Adire Fashion" 
-  className="w-full h-full object-cover" 
-/>
+              <img src="/2.jpeg" alt="Culture Closet Adire" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -496,6 +492,37 @@ const App: React.FC = () => {
       />
 
       <StylistAssistant products={dbproducts} />
+{/* Social Media & Contact Section */}
+<section className="py-20 bg-emerald-50">
+  <div className="max-w-7xl mx-auto px-4 text-center">
+    <h2 className="text-4xl font-serif font-bold text-emerald-950 mb-4">Follow the Story</h2>
+    <p className="text-emerald-800/60 mb-8 uppercase tracking-widest text-sm font-bold">Heritage in every stitch</p>
+    
+    <div className="flex flex-col items-center gap-8">
+      {/* Instagram Link */}
+      <a 
+        href="https://instagram.com/culturecloset_ng" 
+        target="_blank" 
+        rel="noreferrer"
+        className="group flex items-center gap-2"
+      >
+        <span className="text-emerald-600 font-bold text-lg group-hover:text-emerald-800 transition-colors">
+          @culturecloset_ng
+        </span>
+      </a>
+
+      {/* WhatsApp Button */}
+      <a 
+        href="https://wa.me/2349030066552?text=Hello%20Culture%20Closet!%20I'm%20interested%20in%20placing%20an%20order." 
+        target="_blank" 
+        rel="noreferrer"
+        className="bg-emerald-600 text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-emerald-700 transition-all transform hover:-translate-y-1"
+      >
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
     </div>
   );
 };
