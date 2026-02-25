@@ -491,7 +491,7 @@ const App: React.FC = () => {
         onSuccess={(u) => { setUser(u); setIsAuthModalOpen(false); }} 
       />
 
-      <StylistAssistant products={dbproducts} />
+      {/* <StylistAssistant products={dbproducts} /> */}
 {/* Social Media & Contact Section */}
 <section className="py-20 bg-emerald-50">
   <div className="max-w-7xl mx-auto px-4 text-center">
