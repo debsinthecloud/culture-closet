@@ -209,38 +209,62 @@ const App: React.FC = () => {
       </section>
 
       {/* Instagram Feed Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16 space-y-4">
-          <span className="text-emerald-600 font-bold tracking-[0.3em] text-[10px] uppercase block">Community & Lifestyle</span>
-          <h2 className="text-4xl font-serif font-bold text-emerald-950">Follow the Story</h2>
-          <p className="text-emerald-800/40 text-sm tracking-widest font-bold uppercase cursor-pointer hover:text-emerald-900 transition-colors">@culturecloset.ng</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-          {INSTAGRAM_POSTS.map((post) => (
-            <div key={post.id} className="relative group aspect-square overflow-hidden bg-emerald-50 cursor-pointer">
-              <img src={post.image} alt="Instagram content" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center gap-2 text-white">
-                 <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1">
-                      <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span className="text-xs font-bold">{post.likes}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"/></svg>
-                      <span className="text-xs font-bold">{post.comments}</span>
-                    </div>
-                 </div>
-                 <span className="text-[8px] font-bold tracking-[0.2em] uppercase mt-2">Shop This Look</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 text-center">
-           <button className="bg-white border-2 border-emerald-950 text-emerald-950 px-10 py-4 rounded-full font-bold text-xs tracking-widest hover:bg-emerald-950 hover:text-white transition-all uppercase">
-              Join the Conversation
-           </button>
-        </div>
-      </section>
+<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div className="text-center mb-12">
+    <h2 className="text-4xl font-serif font-bold text-emerald-950">Follow the Story</h2>
+    <p className="text-emerald-600 font-bold mt-2">@culturecloset_ng</p>
+  </div>
+
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+    {/* Box 1: Image 18 */}
+    <a href="https://instagram.com/culturecloset_ng" target="_blank" rel="noreferrer" className="relative group aspect-square overflow-hidden bg-gray-100">
+      <img src="/18.jpeg" alt="Adire Style" className="w-full h-full object-cover transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-[10px] font-bold uppercase tracking-widest">View on IG</span>
+      </div>
+    </a>
+
+    {/* Box 2: Image 15 */}
+    <a href="https://instagram.com/culturecloset_ng" target="_blank" rel="noreferrer" className="relative group aspect-square overflow-hidden bg-gray-100">
+      <img src="/15.jpeg" alt="Adire Heritage" className="w-full h-full object-cover transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-[10px] font-bold uppercase tracking-widest">View on IG</span>
+      </div>
+    </a>
+
+    {/* Box 3: Image 8 */}
+    <a href="https://instagram.com/culturecloset_ng" target="_blank" rel="noreferrer" className="relative group aspect-square overflow-hidden bg-gray-100">
+      <img src="/8.jpeg" alt="Adire Fashion" className="w-full h-full object-cover transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-[10px] font-bold uppercase tracking-widest">View on IG</span>
+      </div>
+    </a>
+
+    {/* Box 4: Image 5 */}
+    <a href="https://instagram.com/culturecloset_ng" target="_blank" rel="noreferrer" className="relative group aspect-square overflow-hidden bg-gray-100">
+      <img src="/5.jpeg" alt="Culture Closet" className="w-full h-full object-cover transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-[10px] font-bold uppercase tracking-widest">View on IG</span>
+      </div>
+    </a>
+
+    {/* Box 5: Image 4 */}
+    <a href="https://instagram.com/culturecloset_ng" target="_blank" rel="noreferrer" className="relative group aspect-square overflow-hidden bg-gray-100">
+      <img src="/4.jpeg" alt="Adire Craft" className="w-full h-full object-cover transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-[10px] font-bold uppercase tracking-widest">View on IG</span>
+      </div>
+    </a>
+
+    {/* Box 6: Image 2 */}
+    <a href="https://instagram.com/culturecloset_ng" target="_blank" rel="noreferrer" className="relative group aspect-square overflow-hidden bg-gray-100">
+      <img src="/2.jpeg" alt="Culture Closet Adire" className="w-full h-full object-cover transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-[10px] font-bold uppercase tracking-widest">View on IG</span>
+      </div>
+    </a>
+  </div>
+</section>
     </div>
   );
 
